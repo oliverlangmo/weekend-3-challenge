@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <script src="./jquery.min.js" charset="utf-8"></script>
+    <script src="./fe-app.js" charset="utf-8"></script>
+
+  </head>
+  <body>
+    <form action="http://localhost:8080/formPost" method="post">
+      <h3>Select function</h3>
+      <input type="radio" id="add" name="mathType" value="0"><label-for="add">Add</label><br />
+      <input type="radio" id="subtract" name="mathType" value="1"><label-for="subtract">Subtract</label><br />
+      <input type="radio" id="multiply" name="mathType" value="2"><label-for="multiply">Multiply</label><br />
+      <input type="radio" id="divide"  name="mathType" value="3"><label-for="divide">Divide</label><br />
+        <h3>Enter values here</h3>
+      <input type="text" id = "x" name="firstNumberIn" placeholder="Value 1" value="">
+      <div id="sign"></div>
+      <input type="text" id="y"name="secondNumberIn" placeholder="Value 2" value="">
+      <input type="submit" value="Submit"/ onclick="getInput();">
+    </form>
+  </body>
+</html>
