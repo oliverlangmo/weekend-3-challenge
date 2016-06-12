@@ -4,8 +4,9 @@ var app = express();
 var path = require('path');
 var bodyParser = require( 'body-parser' );
 var urlencodedParser = bodyParser.urlencoded( { extended:false } );
-var addUp = require('../modules/addModule');
-var mathType;
+var doMathModule = require('../modules/doMathModule');
+var calculate = require('../modules/doMathModule');
+var returnText;
 
 var server = app.listen(8080, 'localHost', function(){
   console.log('server is listening');
@@ -17,16 +18,10 @@ app.get("/*", function(request,response){
     response.sendFile(path.join(__dirname, "../public/", file));
 });
 
-// app.get('/doMath', function(req, res){
-//   res.send(addUp());
-//   res.end();
-// });
-app.post( '/formPost', urlencodedParser, function( req, res){
-  // receives a POST request from the form on getTest.html
-  
-  res.write( 'post request received: ' + req.body.firstNumberIn );
-  res.write('type of math:' + req.body.mathType);
-  res.write( 'post request received: ' + req.body.secondNumberIn );
-  res.end();
+app.post( '/doMathModule', urlencodedParser, function( req, res, next){
+  var one = Number(req.body.x);
+  var two = Number(req.body.y);
+  res.send('Solution: ' + calculate(one, two, req.body.type));
+
 });
 app.use(express.static('./server'));
