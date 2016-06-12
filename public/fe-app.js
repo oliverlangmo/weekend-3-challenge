@@ -1,8 +1,16 @@
 var type = document.getElementsByName('mathType');
-var addUp;
 
 
 $(document).ready(function(){
+  $('#reset').click(function(){
+    ('.add').empty();
+    ('.subtract').empty();
+    ('.multiply').empty();
+    ('.divide').empty();
+    ('#sign').empty();
+    ('#x').empty();
+    ('#y').empty();
+  });
   $('.add').click(function(){
     $('#sign').empty();
     $('#sign').append('+');
