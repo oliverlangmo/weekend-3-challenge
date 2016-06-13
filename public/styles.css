@@ -1,0 +1,9 @@
+body{
+  background-image: url('./img/math.png');
+}
+
+.container{
+  width:500px;
+  background-color: #99bbff;
+  border: 1px solid black;
+}

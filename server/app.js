@@ -6,7 +6,7 @@ var bodyParser = require( 'body-parser' );
 var urlencodedParser = bodyParser.urlencoded( { extended:false } );
 var calculate = require('../modules/doMathModule');
 
-var server = app.listen(8080, 'localHost', function(){
+var server = app.listen(process.env.PORT|| 8080,  function(){
   console.log('server is listening');
 });
 

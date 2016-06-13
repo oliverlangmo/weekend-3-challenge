@@ -3,13 +3,14 @@ var type = document.getElementsByName('mathType');
 
 $(document).ready(function(){
   $('#reset').click(function(){
-    ('.add').empty();
-    ('.subtract').empty();
-    ('.multiply').empty();
-    ('.divide').empty();
-    ('#sign').empty();
-    ('#x').empty();
-    ('#y').empty();
+    $('.add').prop('checked', false);
+    $('.subtract').prop('checked', false);
+    $('.multiply').prop('checked', false);
+    $('.divide').prop('checked', false);
+    $('#sign').empty();
+    $('#outputDiv').empty();
+    $('#x').val('');
+    $('#y').val('');
   });
   $('.add').click(function(){
     $('#sign').empty();
