@@ -1,7 +1,7 @@
 var type = document.getElementsByName('mathType');
 
-
 $(document).ready(function(){
+  $('input:radio:first').click();
   $('#reset').click(function(){
     $('.add').prop('checked', false);
     $('.subtract').prop('checked', false);
@@ -12,7 +12,7 @@ $(document).ready(function(){
     $('#x').val('');
     $('#y').val('');
   });
-  $('.add').click(function(){
+  $('#add').click(function(){
     $('#sign').empty();
     $('#sign').append('+');
     for (var i = 0; i < type.length; i++) {
@@ -21,11 +21,10 @@ $(document).ready(function(){
         console.log(selectedType);
         return selectedType;
       }
-
-
-    }
-  });
-$('.subtract').click(function(){
+   }
+});
+$('#add').click();
+$('#subtract').click(function(){
   $('#sign').empty();
   $('#sign').append('-');
   for (var i = 0; i < type.length; i++) {
@@ -36,7 +35,7 @@ $('.subtract').click(function(){
     }
   }
 });
-$('.multiply').click(function(){
+$('#multiply').click(function(){
   $('#sign').empty();
   $('#sign').append('X');
   for (var i = 0; i < type.length; i++) {
@@ -47,7 +46,7 @@ $('.multiply').click(function(){
     }
   }
 });
-  $('.divide').click(function(){
+  $('#divide').click(function(){
     $('#sign').empty();
     $('#sign').append('/');
     for (var i = 0; i < type.length; i++) {
@@ -58,9 +57,23 @@ $('.multiply').click(function(){
 
       }
     }
+
  });
+ var emptyCheck = function(){
+ if ($('#x').val() || $('#y').val() === '') {
+   var newParagraph = document.createElement('p');
+
+   newParagraph.textContent = 'Please enter values';
+
+   document.getElementById('outputDiv').innerHTML='';
+
+   document.getElementById('outputDiv').appendChild( newParagraph );
+
+ }
+ };
 $('#sendInfo').click(function(){
   serverOps();
+  emptyCheck();
 });
 
 
@@ -68,13 +81,13 @@ $('#sendInfo').click(function(){
 var formatResponse = function( response )
 {
   console.log( 'in processResponse: ' + response );
-  // new p tag
+
   var newParagraph = document.createElement('p');
-  // with out output data
+
   newParagraph.textContent = response;
-  // empty our output div
+
   document.getElementById('outputDiv').innerHTML='';
-  // append newParagraph to output
+
   document.getElementById('outputDiv').appendChild( newParagraph );
 };
 
