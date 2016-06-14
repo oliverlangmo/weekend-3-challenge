@@ -1,9 +1,10 @@
 var type = document.getElementsByName('mathType');
 
 $(document).ready(function(){
-  $('input:radio:first').click();
+
+//resets form
   $('#reset').click(function(){
-    $('.add').prop('checked', false);
+    $('.add').prop('checked', true);
     $('.subtract').prop('checked', false);
     $('.multiply').prop('checked', false);
     $('.divide').prop('checked', false);
@@ -12,6 +13,7 @@ $(document).ready(function(){
     $('#x').val('');
     $('#y').val('');
   });
+  //adds + symbol and returns type selected
   $('#add').click(function(){
     $('#sign').empty();
     $('#sign').append('+');
@@ -23,7 +25,9 @@ $(document).ready(function(){
       }
    }
 });
+//simulates button click on load to append + symbol
 $('#add').click();
+//adds - symbol and returns type selected 
 $('#subtract').click(function(){
   $('#sign').empty();
   $('#sign').append('-');
@@ -35,6 +39,7 @@ $('#subtract').click(function(){
     }
   }
 });
+//adds X symbol and returns type selected
 $('#multiply').click(function(){
   $('#sign').empty();
   $('#sign').append('X');
@@ -46,6 +51,7 @@ $('#multiply').click(function(){
     }
   }
 });
+//adds / symbol and returns type selected
   $('#divide').click(function(){
     $('#sign').empty();
     $('#sign').append('/');
@@ -57,27 +63,19 @@ $('#multiply').click(function(){
 
       }
     }
-
- });
- var emptyCheck = function(){
- if ($('#x').val() || $('#y').val() === '') {
-   var newParagraph = document.createElement('p');
-
-   newParagraph.textContent = 'Please enter values';
-
-   document.getElementById('outputDiv').innerHTML='';
-
-   document.getElementById('outputDiv').appendChild( newParagraph );
-
- }
- };
-$('#sendInfo').click(function(){
-  serverOps();
-  emptyCheck();
+});
+//checks for empty boxes and, if none, submits entries
+ $('#sendInfo').click(function(){
+   if($('#x').val()==='' || $('#y').val() ===''){
+     $('#outputDiv').append('Please enter values');
+   }else{
+      serverOps();
+    }
 });
 
 
 });
+//appends ajax response to DOM
 var formatResponse = function( response )
 {
   console.log( 'in processResponse: ' + response );
@@ -91,6 +89,7 @@ var formatResponse = function( response )
   document.getElementById('outputDiv').appendChild( newParagraph );
 };
 
+// assembles object and sends ajax call to server
 function serverOps(){
 var x = $('#x').val();
 var y = $('#y').val();
@@ -106,5 +105,5 @@ console.log(mathObject);
             console.log('this works');
           formatResponse(data);
         }
-    });
+      });
 }
